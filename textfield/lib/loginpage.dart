@@ -15,7 +15,7 @@ class LoginPageState extends State<LoginPage>{
     final TextField username = new TextField(
       keyboardType: TextInputType.text,
       decoration: new InputDecoration(
-        hintText: 'Enter your user name',
+        labelText: 'Enter your user name',
         // ignore: argument_type_not_assignable
         contentPadding: new EdgeInsets.all(10.0),
       ),
@@ -30,7 +30,7 @@ class LoginPageState extends State<LoginPage>{
     final TextField password = new TextField(
       keyboardType: TextInputType.text,
       decoration: new InputDecoration(
-        hintText: 'Enter your password',
+        labelText: 'Enter your password',
         // ignore: argument_type_not_assignable
         contentPadding: new EdgeInsets.all(10.0),
       ),
@@ -46,7 +46,7 @@ class LoginPageState extends State<LoginPage>{
     final TextField email = new TextField(
       keyboardType: TextInputType.emailAddress,
       decoration: new InputDecoration(
-        hintText: 'Enter your email adress',
+        labelText: 'Enter your email adress',
         // ignore: argument_type_not_assignable
         contentPadding: new EdgeInsets.all(10.0),
       ),
@@ -97,7 +97,8 @@ class LoginPageState extends State<LoginPage>{
             child: password,
           ),
           new Container(
-            margin: new EdgeInsets.only(left: 20.0,right:20.0,bottom: 20.0),
+            // ignore: missing_identifier
+            margin: new EdgeInsets.only(left: 20.0,right:20.0,bottom: 20.0,top: 20.0),
             child: new Row(
               children: <Widget>[
                 new Expanded(
@@ -106,7 +107,6 @@ class LoginPageState extends State<LoginPage>{
                       textColor: Colors.white,
                       child: new Text("Login"),
                       onPressed: (){
-                        //TODO
                         print('user: ${user.userName}, emial : ${user.email}, password : ${user.password}');
                       },
                   ),
