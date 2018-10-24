@@ -8,6 +8,7 @@ AppStateCart appReducer(AppStateCart state, action) => AppStateCart(
 final Reducer<List<ProductsItem>> productListReducer = combineReducers([
   TypedReducer<List<ProductsItem>, AddItemAction>(_addItem),
   TypedReducer<List<ProductsItem>, RemoveItemAction>(_removeItem),
+  TypedReducer<List<ProductsItem>,RemoveAll>(_removeAll),
 ]);
 
 List<ProductsItem> _removeItem(
@@ -16,3 +17,5 @@ List<ProductsItem> _removeItem(
 
 List<ProductsItem> _addItem(List<ProductsItem> product, AddItemAction action) =>
     List.unmodifiable(List.from(product)..add(action.item));
+List<ProductsItem> _removeAll( List<ProductsItem> product,RemoveAll action) =>
+    List.unmodifiable(List.from(product)..clear());

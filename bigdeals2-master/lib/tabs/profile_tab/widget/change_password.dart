@@ -3,6 +3,7 @@ import 'package:bigdeals2/app_bloc.dart';
 
 class ChangePassWord extends StatefulWidget {
   AppBloc appBloc;
+  ChangePass changePass = ChangePass();
   ChangePassWord({Key key, this.appBloc}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -76,12 +77,13 @@ class ChangePassWordState extends State<ChangePassWord> {
                 color: Color.fromARGB(150, 7, 239, 204),
                 onPressed: (() {
                   if (_confirmPass.text == _newPass.text)
-                    widget.appBloc
-                        .changePassWord(_newPass.text, _currentPass.text);
-                    //     .then((onValue) {
-                    //   message = onValue;
-                    //   if (message == 'success') widget.appBloc.dangXuat();
-                    // });
+                    widget.changePass
+                        .changePassWord(_newPass.text, _currentPass.text,widget.appBloc.getAccessToken())
+                        .then((onValue) {
+                      if (onValue == 'success') 
+                        widget.appBloc.postLogout();
+                      showDialog(context: context,child: AddItemDialog(message: onValue,));
+                    });
                 }),
               ),
             ),

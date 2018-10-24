@@ -5,4 +5,3 @@ class AppStateCart {
 AppStateCart(this.product);
  factory AppStateCart.initial() => AppStateCart(List.unmodifiable([]));
 }
-

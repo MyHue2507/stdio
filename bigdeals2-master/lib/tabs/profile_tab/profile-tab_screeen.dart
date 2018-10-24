@@ -1,11 +1,11 @@
-import 'package:bigdeals2/tabs/profile_tab/profile.dart';
+import 'package:bigdeals2/tabs/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:bigdeals2/app_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
   final AppBloc appBloc;
-
-  ProfileScreen({Key key, this.appBloc}) : super(key: key);
+  ForgotPass forgotPass ;
+  ProfileScreen({Key key, this.appBloc,this.forgotPass}) : super(key: key);
 
   @override
   ProfileScreenState createState() {
@@ -109,7 +109,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) =>
-                            ForgotPassScreen(appBloc: widget.appBloc)));
+                            ForgotPassScreen(forgotPass: widget.forgotPass,)));
                   },
                 ),
               ),
@@ -266,12 +266,12 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(150, 7, 239, 204),
-        title: Text('Profile'),
-      ),
-      body: counter == 1 ? login() : register(),
-    );
+    return 
+      // appBar: AppBar(
+      //   backgroundColor: Color.fromARGB(150, 7, 239, 204),
+      //   title: Text('Profile'),
+      // ),
+       counter == 1 ? login() : register();
+  
   }
 }

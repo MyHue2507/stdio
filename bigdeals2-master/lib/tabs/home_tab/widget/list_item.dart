@@ -1,13 +1,12 @@
 import 'package:bigdeals2/tabs/tabs.dart';
 import 'package:bigdeals2/app_bloc.dart';
-
+enum LoadingState{LOADING, DONE, ERROR}
 class ListItem extends StatefulWidget {
   final AppBloc appBloc;
-  FetchHomePage homePage ;
-  FetchCategory category ;
-  FetchSlide slide ;
+  FetchHomePage homePage  = FetchHomePage();
+
   FetchListCategories listCategories ;
-  ListItem({Key key, this.appBloc,this.slide,this.listCategories,this.homePage,this.category}) : super(key: key);
+  ListItem({Key key, this.appBloc,this.listCategories,}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _ListItemState();
@@ -84,15 +83,15 @@ class _ListItemState extends State<ListItem> {
       case LoadingState.DONE:
         return CustomScrollView(
           slivers: [
-            SilverAppBar(),
+//            SilverAppBar(),
             SliverList(
               delegate: SliverChildListDelegate([
-                SliderImage(slide: widget.slide),
+                SliderImage(),
               ]),
             ),
 
             MenuItem(
-              appBloc: widget.appBloc,listCategories: widget.listCategories,category: widget.category,
+              appBloc: widget.appBloc
             ),
             SliverList(
                 delegate: SliverChildListDelegate([

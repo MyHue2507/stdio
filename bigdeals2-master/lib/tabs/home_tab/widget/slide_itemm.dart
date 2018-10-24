@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:bigdeals2/tabs/tabs.dart';
 
 class SliderImage extends StatefulWidget {
-  FetchSlide slide ;
-  SliderImage({Key key, this.slide}) : super(key: key);
+  FetchSlide slide = FetchSlide();
   _SliderImageState createState() => new _SliderImageState();
 }
 
 class _SliderImageState extends State<SliderImage>
     with SingleTickerProviderStateMixin {
   List<Slide> _slide = List();
-  Animation<double> animation;
-  AnimationController controller;
   _loadSlide() async {
     var nextSlide = await widget.slide.fetchUiSlide();
     setState(() {
@@ -22,12 +19,6 @@ class _SliderImageState extends State<SliderImage>
 
   initState() {
     super.initState();
-    controller = new AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
-    animation = new Tween(begin: 0.0, end: 18.0).animate(controller)
-      ..addListener(() {
-      });
-    controller.forward();
     _loadSlide();
   }
 
@@ -44,7 +35,6 @@ class _SliderImageState extends State<SliderImage>
   }
 
   dispose() {
-    controller.dispose();
     super.dispose();
   }
 }

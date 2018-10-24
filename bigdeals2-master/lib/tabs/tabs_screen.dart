@@ -5,12 +5,10 @@ import 'package:bigdeals2/tabs/tabs.dart';
 
 class TabsScreen extends StatefulWidget {
   final AppBloc appBloc;
-  FetchSlide slide ;
-  FetchListCategories listCategories ;
-  FetchCategory category ;
-  FetchHomePage homePage ;
-
-  TabsScreen({Key key, this.appBloc,this.slide,this.listCategories,this.homePage,this.category,}) : super(key: key);
+  TabsScreen({
+    Key key,
+    this.appBloc,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -28,6 +26,7 @@ class _TabsScreenState extends State<TabsScreen>
   void initState() {
     super.initState();
     setState(() {
+      widget.appBloc.getAccessToken() ;
       widget.appBloc.updateUser(AppState(widget.appBloc.getIsLoading()));
       userSubcription = widget.appBloc.appState.listen((s) {
         if (s.isLogged != _isLogged) {
@@ -73,13 +72,19 @@ class _TabsScreenState extends State<TabsScreen>
         body: TabBarView(
           controller: controller,
           children: <Widget>[
-            HomeScreen(appBloc: widget.appBloc,slide: widget.slide,listCategories: widget.listCategories,homePage: widget.homePage,category: widget.category,),
-            CartScreen(),
+            HomeScreen(
+              appBloc: widget.appBloc,
+            ),
+            CartScreen(
+              appBloc: widget.appBloc,
+            ),
             _isLogged
                 ? LoggedScreen(
                     appBloc: widget.appBloc,
                   )
-                : ProfileScreen(appBloc: widget.appBloc)
+                : ProfileScreen(
+                    appBloc: widget.appBloc,
+                  )
           ],
         ),
       ),

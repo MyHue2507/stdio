@@ -4,7 +4,7 @@ import 'package:bigdeals2/tabs/tabs.dart';
 
 class LoggedScreen extends StatefulWidget {
   final AppBloc appBloc;
-  LoggedScreen({Key key, this.appBloc}) : super(key: key);
+  LoggedScreen({Key key, this.appBloc,}) : super(key: key);
   @override
   LoggedScreenState createState() {
     return LoggedScreenState();
@@ -60,7 +60,7 @@ class LoggedScreenState extends State<LoggedScreen> {
             child: Card(
               child: InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder : (context) => MyAddress()));
+                  Navigator.push(context, MaterialPageRoute(builder : (context) => MyAddress(appBloc: widget.appBloc,)));
                 },
                 child: buildRow('My Address'),
               ),
@@ -87,7 +87,7 @@ class LoggedScreenState extends State<LoggedScreen> {
                       TextStyle(height: 0.0, fontSize: 20.0, color: Colors.red),
                 ),
                 onPressed: () {
-                  widget.appBloc.dangXuat();
+                  widget.appBloc.postLogout();
                 },
               ),
               onTap: null,

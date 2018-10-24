@@ -4,10 +4,13 @@ import 'package:flutter_html_view/flutter_html_view.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:bigdeals2/app_bloc.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class ProductDetails extends StatefulWidget {
   AppBloc appBloc;
   ProductsItem product;
+  CheckProduct checkProduct = CheckProduct();
+  FetchProductDetail detail = FetchProductDetail() ;
   ProductDetails({Key key, this.product, this.appBloc}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -25,6 +28,13 @@ class ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     // TODO: implement initState
+   widget.detail.fetchProductDetail(widget.product.id).then((onValue){
+     widget.product = onValue ;
+   }) ;
+   if(widget.product.image_list == null) 
+      widget.product.image_list = List();
+   widget.product.image_list?.add(widget.product.avatar_image);
+   print(widget.product.image_list);
     super.initState();
     controller = new TextEditingController();
   }
@@ -52,7 +62,12 @@ class ProductDetailsState extends State<ProductDetails> {
                     padding: EdgeInsets.only(
                         left: 20.0, top: 10.0, right: 20.0, bottom: 10.0),
                     decoration: BoxDecoration(color: Colors.blueGrey[100]),
-                    child: Image.network(widget.product.avatar_image),
+                    child: Carousel(
+                    //  boxFit: BoxFit.cover,
+                      images: widget.product.image_list
+                          .map((list) => NetworkImage(list))
+                          .toList(),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(20.0),
@@ -123,16 +138,21 @@ class ProductDetailsState extends State<ProductDetails> {
                   minWidth: double.infinity,
                   color: Color.fromARGB(150, 7, 239, 204),
                   onPressed: () {
-                    if (controller.text != null)
-                      widget.appBloc
-                          .postCheckProduct(
-                              widget.product.id.toString(),
-                              widget.product.current_deal_id.toString(),
-                              controller.text)
-                          .then((value) {
-                        if (value == 'success')
-                          viewModel.onAddItem(widget.product);
-                      });
+                    widget.checkProduct
+                        .postCheckProduct(
+                            widget.product.id.toString(),
+                            widget.product.current_deal_id.toString(),
+                            controller.text,
+                            widget.appBloc.getAccessToken())
+                        .then((value) {
+                      showDialog(
+                          context: context,
+                          child: AddItemDialog(message: value));
+                      if (value == 'success') {
+                        widget.product.quantity = int.parse(controller.text);
+                        viewModel.onAddItem(widget.product);
+                      }
+                    });
                   },
                 ),
               ),

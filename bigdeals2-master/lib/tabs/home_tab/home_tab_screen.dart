@@ -3,11 +3,7 @@ import 'package:bigdeals2/app_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   final AppBloc appBloc;
-  FetchSlide slide ;
-  FetchListCategories listCategories ;
-  FetchHomePage homePage ;
-  FetchCategory category ;
-  HomeScreen({Key key, this.appBloc,this.slide,this.listCategories,this.homePage,this.category}) : super(key: key);
+  HomeScreen({Key key, this.appBloc}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _HomeScreenState();
@@ -18,9 +14,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(150, 7, 239, 204),
+        title: Text("GroupBuy"),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.search),onPressed: (){
+             Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>SearchScreen(appBloc: widget.appBloc)),
+            );
+          },)
+        ],
+      ),
         body: Center(
       child: ListItem(
-        appBloc: widget.appBloc,slide: widget.slide,listCategories: widget.listCategories,homePage: widget.homePage,category: widget.category,
+        appBloc: widget.appBloc
       ),
     ));
   }

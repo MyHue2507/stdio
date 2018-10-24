@@ -1,10 +1,10 @@
 import 'package:bigdeals2/tabs/tabs.dart';
-
+import 'package:bigdeals2/app_bloc.dart';
 class SilverAppBar extends StatelessWidget {
+  AppBloc appBloc ;
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return SliverAppBar(
+    Widget build(BuildContext context) {
+      return  SliverAppBar(
       backgroundColor: Color.fromARGB(150, 7, 239, 204),
       pinned: false,
       floating: false,
@@ -12,7 +12,7 @@ class SilverAppBar extends StatelessWidget {
       title: Container(
         margin: EdgeInsets.only(bottom: 50.0),
         child: Text(
-          'Group By',
+          'Group Buy',
           style: TextStyle(fontSize: 20.0),
         ),
       ),
@@ -42,9 +42,15 @@ class SilverAppBar extends StatelessWidget {
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),
-          onPressed: () {},
+          onPressed: () {
+             
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>SearchScreen(appBloc: appBloc)),
+            );
+          },
         ),
       ],
-    );
-  }
+    );;
+    }
 }

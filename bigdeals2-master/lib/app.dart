@@ -6,13 +6,9 @@ import 'package:bigdeals2/splash/splash.dart';
 
 class MyApp extends StatefulWidget {
   final AppBloc appBloc;
-  FetchSlide slide ;
-  FetchListCategories listCategories ;
-  FetchHomePage homePage ;
-  FetchCategory category ;
   MyApp({
     Key key,
-    this.appBloc,this.slide,this.listCategories,this.homePage,this.category,
+    this.appBloc,
   }) : super(key: key);
 
   @override
@@ -41,7 +37,9 @@ class _MyState extends State<MyApp> {
         routes: {
           "/splash": (context) => SplashScreen(),
           "/welcome": (context) => WelcomeScreen(),
-          "/": (context) => TabsScreen(appBloc: widget.appBloc,slide: widget.slide,listCategories: widget.listCategories,homePage: widget.homePage,category: widget.category,),
+          "/": (context) => TabsScreen(
+                appBloc: widget.appBloc,
+              ),
           "/logged": (context) => LoggedScreen(appBloc: widget.appBloc),
           "/changePassword": (context) => ChangePassWord(),
           "/my address": (context) => MyAddress(),

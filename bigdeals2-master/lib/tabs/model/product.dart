@@ -2,26 +2,28 @@ import 'package:meta/meta.dart';
 class ProductsItem {
   int id;
   String name;
-   int current_deal_id ;
+  int current_deal_id ;
   String description;
   String avatar_image;
-  // DateTime  time_start ;
   int time_end;
   int price_deal;
   int price;
   int amount_target;
   int amount_sale;
+  int quantity ;
+  List<String> image_list;
   ProductsItem(
-      {@required this.id,
-      @required this.name,
-      @required this.avatar_image,
-      @required this.price,
-      @required this.time_end,
-      @required this.price_deal,
-      @required this.amount_target,
-      @required this.amount_sale,
-      @required this.description,
-      @required this.current_deal_id});
+      {this.id,
+      this.name,
+      this.avatar_image,
+      this.price,
+      this.time_end,
+      this.price_deal,
+      this.amount_target,
+      this.amount_sale,
+      this.description,
+      this.current_deal_id,
+      this.image_list});
   factory ProductsItem.internalFromJson(Map jsonMap) {
     return ProductsItem(
       id: jsonMap["id"] as int,
@@ -31,9 +33,12 @@ class ProductsItem {
       price: jsonMap["price"] as int,
       price_deal: jsonMap["price_deal"] as int,
       amount_target: jsonMap["amount_target"] as int,
-      amount_sale: jsonMap["amount_sale"] as int,
+      amount_sale: jsonMap["amount_sale"] as  int,
       description: jsonMap["description"] as String,
       current_deal_id: jsonMap["current_deal_id"] as int ,
+      image_list :(jsonMap["image_list"] as List<String>)
+          //  .map<String>((value) => value. toString())
+          //  .toList(),
     );
   }
 }

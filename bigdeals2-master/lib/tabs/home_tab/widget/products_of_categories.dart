@@ -2,12 +2,12 @@ import 'package:bigdeals2/tabs/tabs.dart';
 import 'package:bigdeals2/app_bloc.dart';
 
 class ProductsOfCategories extends StatefulWidget {
-  FetchCategory category ;
+  FetchCategory category = FetchCategory() ;
   AppBloc appBloc ;
   String name_categories;
   int id_categories;
   ProductsOfCategories(
-      {Key key, this.category, this.name_categories, this.id_categories,this.appBloc})
+      {Key key, this.name_categories, this.id_categories,this.appBloc})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {

@@ -10,3 +10,5 @@ class RemoveItemAction {
   final ProductsItem item;
   RemoveItemAction(this.item);
 }
+class RemoveAll{
+}

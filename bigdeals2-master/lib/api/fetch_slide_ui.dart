@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 class FetchSlide{
   Future<List<Slide>> fetchUiSlide() async {
     var response =
-        await http.get("https://bigdeal.stdiohue.com/api/v1/UI/slide");
+        await http.get("https://groupbuy.vn/api/v1/UI/slide");
     if (response.statusCode == 200) {
       if (json.decode(response.body)['message'] == "success") {
         final parsedSlide =

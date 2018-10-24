@@ -42,23 +42,30 @@ class _CartItemState extends State<CartItem> {
                         Container(
                           width: 20.0,
                         ),
-                        Column(
+                       Expanded(
+                         child:  Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text(widget.product.name,style: TextStyle(fontWeight: FontWeight.bold),),
-                            Container(
-                              height: 10.0,
+                           Text(
+                              widget.product.name,
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text(widget.product.price_deal.toString(),style: TextStyle(color: Color.fromARGB(150, 7, 239, 204),fontWeight: FontWeight.w900),),
-                            Container(
-                              height: 10.0,
+                            Text(
+                              widget.product.price_deal.toString(),
+                              style: TextStyle(
+                                  color: Color.fromARGB(150, 7, 239, 204),
+                                  fontWeight: FontWeight.w900),
                             ),
                             Text(widget.product.price.toString(),
                                 style: TextStyle(
-                                    decoration: TextDecoration.lineThrough,color: Colors.grey,fontWeight: FontWeight.w800)),
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w800)),
+                            Text('Số Lượng : ${widget.product.quantity}')
                           ],
                         ),
+                       ),
                       ],
                     ),
                   ),

@@ -1,6 +1,11 @@
 import 'package:bigdeals2/tabs/tabs.dart';
+import 'package:bigdeals2/app_bloc.dart';
 
 class AddAddress extends StatefulWidget {
+  ListAddress listAddress ;
+  AppBloc appBloc;
+  Add_Address add = Add_Address();
+  AddAddress({Key key ,this.appBloc}): super(key: key);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -66,7 +71,11 @@ class AddAddressState extends State<AddAddress> {
               minWidth: 200.0,
               child: Text('Add', style: TextStyle(fontSize: 20.0)),
               color: Color.fromARGB(150, 7, 239, 204),
-              onPressed: (() {}),
+              onPressed: (() {
+                widget.add.addAddress(_receiver.text, _address.text, _phoneNumber.text,widget.appBloc.getAccessToken()).then((mess){
+                  showDialog(context: context,child: AddItemDialog(message: mess,));
+                }) ;
+              }),
             ),
             )
           ],

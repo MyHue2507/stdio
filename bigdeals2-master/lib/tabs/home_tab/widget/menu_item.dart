@@ -3,9 +3,8 @@ import 'package:bigdeals2/app_bloc.dart';
 
 class MenuItem extends StatefulWidget {
   final AppBloc appBloc;
-  FetchListCategories listCategories ;
-  FetchCategory category ;
-  MenuItem({Key key, this.appBloc, this.listCategories,this.category}) : super(key: key);
+  FetchListCategories listCategories = FetchListCategories();
+  MenuItem({Key key, this.appBloc,}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -33,7 +32,7 @@ class _MenuItemState extends State<MenuItem> {
       children: [
         MaterialButton(
           child:
-              new CircleAvatar(backgroundImage: NetworkImage(category.image)),
+              new CircleAvatar(backgroundImage: NetworkImage(category.image), backgroundColor: Colors.blue,),
           onPressed: () {
             Navigator.push(
                 context,
@@ -42,7 +41,6 @@ class _MenuItemState extends State<MenuItem> {
                           appBloc: widget.appBloc,
                           id_categories: category.id,
                           name_categories: category.name,
-                          category: widget.category,
                         )));
           },
           height: 50.0,

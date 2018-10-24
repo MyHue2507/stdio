@@ -1,11 +1,11 @@
-import 'package:bigdeals2/app_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:bigdeals2/tabs/tabs.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   @override
-  final AppBloc appBloc;
+  ForgotPass forgotPass = ForgotPass();
 
-  ForgotPassScreen({Key key, this.appBloc}) : super(key: key);
+  ForgotPassScreen({Key key, this.forgotPass}) : super(key: key);
 
   ForgotPassScreenState createState() {
     return ForgotPassScreenState();
@@ -72,8 +72,13 @@ class ForgotPassScreenState extends State<ForgotPassScreen> {
                           style: TextStyle(color: Colors.white, fontSize: 20.0),
                         ),
                         onPressed: () {
-                          widget.appBloc
-                              .postForgotPassword(_emailTextController.text);
+                          widget.forgotPass
+                              .postForgotPassword(_emailTextController.text)
+                              .then((onValue) {
+                            showDialog(
+                                context: context,
+                                child: AddItemDialog(message: onValue));
+                          });
                         },
                       ),
                     ),
