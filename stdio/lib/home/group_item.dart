@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:stdio/chat/chat_screen.dart';
+import 'package:stdio/ticket/group_screen.dart';
 
 class GroupItem extends StatefulWidget {
   String avatar;
@@ -57,11 +57,7 @@ class _GroupItemState extends State<GroupItem> {
           ),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => ChatScreen(
-                      groupName: widget.groupName,
-                      user: widget.user,
-                      groupId: widget.groupId,
-                    )));
+                builder: (_) => GroupScreen(groupId: widget.groupId,groupName: widget.groupName,user: widget.user,)));
           },
         ),
       ],

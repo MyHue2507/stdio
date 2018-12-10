@@ -63,8 +63,11 @@ class _BuildItemState extends State<BuildItem> {
                         widget.groupId, widget.groupName, isJoined);
 
                     showDialog(
-                          context: context,
-                          child: AddItemDialog(message: isJoined ? 'This user is joined group': 'Success' ));
+                        context: context,
+                        child: AddItemDialog(
+                            message: isJoined
+                                ? 'This user is joined group'
+                                : 'Success'));
                   },
                   child: Text('Yes')),
               new FlatButton(

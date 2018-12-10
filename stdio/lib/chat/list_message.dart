@@ -32,8 +32,9 @@ class ChatMessageListItem extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          messageSnapshot.value['type'] == 0
-              ? Container(
+          // messageSnapshot.value['type'] == 0
+              // ? 
+              Container(
                   child: Text(
                     messageSnapshot.value['text'],
                     style: TextStyle(color: Colors.white),
@@ -47,7 +48,7 @@ class ChatMessageListItem extends StatelessWidget {
                       // bottom: isLastMessageRight(widget.index) ? 20.0 : 10.0,
                       right: 10.0),
                 )
-              : Container(
+              // : Container(
                   // child: Material(
                   //   child: CachedNetworkImage(
                   //     placeholder: Container(
@@ -82,7 +83,7 @@ class ChatMessageListItem extends StatelessWidget {
                   //   clipBehavior: Clip.hardEdge,
                   // ),
                   // margin: EdgeInsets.only(right: 10.0),
-                )
+                  // )
         ],
       )
     ];
@@ -94,25 +95,28 @@ class ChatMessageListItem extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          
           Container(
               margin: const EdgeInsets.only(right: 5.0),
               child: CircleAvatar(
                 backgroundImage:
                     NetworkImage(messageSnapshot.value['senderPhotoUrl']),
               )),
-          messageSnapshot.value['type'] == 0 ?Container(
-            // color: Colors.blue,
-            child: Text(
-              messageSnapshot.value['text'],
-              style: TextStyle(color: Colors.white),
-            ),
-            padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-            width: 200.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0), color: Colors.blue),
-            margin: EdgeInsets.only(left: 10.0),
-          ): Container(
+          // messageSnapshot.value['type'] == 0
+              // ?
+               Container(
+                  //  color: Colors.blue,
+                  child: Text(
+                    messageSnapshot.value['text'],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+                  width: 200.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.blue),
+                  margin: EdgeInsets.only(left: 10.0),
+                )
+              // : Container(
                   // child: Material(
                   //   child: CachedNetworkImage(
                   //     placeholder: Container(
@@ -147,7 +151,7 @@ class ChatMessageListItem extends StatelessWidget {
                   //   clipBehavior: Clip.hardEdge,
                   // ),
                   // margin: EdgeInsets.only(right: 10.0),
-                )
+                  // )
         ],
       ),
     ];

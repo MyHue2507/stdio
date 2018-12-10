@@ -24,6 +24,7 @@ dependencies:
   shared_preferences: ^0.4.2
   # image_picker: ^0.4.9
   firebase_database: ^1.0.3
+  intl: "^0.15.7"
   # cached_network_image: ^0.4.2
   rxdart: ^0.18.1
   firebase_core: ^0.2.5
