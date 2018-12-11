@@ -29,9 +29,12 @@ class LoginScreenState extends State<LoginScreen> {
     if (isLoggedIn) {
       final FirebaseAuth _auth = FirebaseAuth.instance;
       FirebaseUser firebaseUser = await _auth.currentUser();
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          Navigator.push(
+        context,
+        MaterialPageRoute(
             builder: (context) =>
-                HomeScreen(user: firebaseUser,)));
+                HomeScreen(user: firebaseUser,)),
+      );
     }
 
     this.setState(() {

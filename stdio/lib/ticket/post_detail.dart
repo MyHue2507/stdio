@@ -105,68 +105,82 @@ class PostDetailState extends State<PostDetail> {
         //     ],
         //   ),
         // ),
-        body: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Container(
-                    margin: const EdgeInsets.only(right: 5.0),
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          widget.dataSnapshot.value['senderPhotoUrl']),
-                    )),
-                Container(
-                  // color: Colors.blue,
-                  child: Text(
-                    widget.dataSnapshot.value['senderName'],
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  padding: EdgeInsets.fromLTRB(5.0, 10.0, 15.0, 10.0),
-                  width: 200.0,
-                  // decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(8.0),
-                  //     color: Colors.blue),
-                  margin: EdgeInsets.only(left: 10.0),
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+        body: Card(
+                  child: Column(
+            children: <Widget>[
+              Row(
                 children: <Widget>[
                   Container(
-                    child: Text('''${widget.dataSnapshot.value['content']}'''),
+                      margin: const EdgeInsets.only(right: 5.0),
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            widget.dataSnapshot.value['senderPhotoUrl']),
+                      )),
+                  Container(
+                    // color: Colors.blue,
+                    child: Text(
+                      '${widget.dataSnapshot.value['senderName']}\n${widget.dataSnapshot.value['timePost']}',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    padding: EdgeInsets.fromLTRB(5.0, 10.0, 15.0, 10.0),
+                    width: 200.0,
+                    // decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(8.0),
+                    //     color: Colors.blue),
+                    margin: EdgeInsets.only(left: 10.0),
                   ),
                 ],
               ),
-            ),
-            new Flexible(
-              child: new FirebaseAnimatedList(
-                query: FirebaseDatabase.instance
-                    .reference()
-                    .child('Group')
-                    .child('${widget.groupId}')
-                    .child('post')
-                    .child(widget.dataSnapshot.key)
-                    .child('commment'),
-                padding: const EdgeInsets.all(8.0),
-                reverse: false,
-                sort: (a, b) => b.key.compareTo(a.key),
-                itemBuilder: (_, DataSnapshot dataSnapshotcm,
-                    Animation<double> animation, int index) {
-                  return ListComment(
-                      dataSnapshot: dataSnapshotcm,
-                      animation: animation);
-                },
+              Divider(
+                 height: 10.0,
               ),
-            ),
-            new Divider(height: 1.0),
-            new Container(
-              decoration: new BoxDecoration(color: Theme.of(context).cardColor),
-              child: _buildTextComposer(),
-            ),
-          ],
+              Container(
+                margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Text('''${widget.dataSnapshot.value['content']}'''),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 30.0,
+              ),
+              Divider(
+                height: 10.0,
+              ),
+              Container(
+                height: 20.0,
+              ),
+              new Flexible(
+                child: new FirebaseAnimatedList(
+                  query: FirebaseDatabase.instance
+                      .reference()
+                      .child('Group')
+                      .child('${widget.groupId}')
+                      .child('post')
+                      .child(widget.dataSnapshot.key)
+                      .child('commment'),
+                  padding: const EdgeInsets.all(8.0),
+                  reverse: false,
+                  sort: (a, b) => b.key.compareTo(a.key),
+                  itemBuilder: (_, DataSnapshot dataSnapshotcm,
+                      Animation<double> animation, int index) {
+                    return Container(child: CommentItem(
+                        dataSnapshot: dataSnapshotcm, animation: animation),
+                        margin: EdgeInsets.only(left: 10.0,top: 5.0),);
+                  },
+                ),
+              ),
+              new Divider(height: 1.0),
+              new Container(
+                decoration: new BoxDecoration(color: Theme.of(context).cardColor),
+                child: _buildTextComposer(),
+              ),
+            ],
+          ),
         ));
   }
 
@@ -208,11 +222,9 @@ class PostDetailState extends State<PostDetail> {
               child: IconButton(
                   icon: new Icon(Icons.send),
                   onPressed: () {
-                    postComment.onComment(
-                                  widget.groupId,
-                                  widget.dataSnapshot.key,
-                                  _textEditingController.text);
-                              _textEditingController.clear();
+                    postComment.onComment(widget.groupId,
+                        widget.dataSnapshot.key, _textEditingController.text);
+                    _textEditingController.clear();
                   })),
         ],
       ),

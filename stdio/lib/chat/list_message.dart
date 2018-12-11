@@ -39,14 +39,12 @@ class ChatMessageListItem extends StatelessWidget {
                     messageSnapshot.value['text'],
                     style: TextStyle(color: Colors.white),
                   ),
-                  padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-                  width: 200.0,
+                  // padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       color: Colors.blue),
                   margin: EdgeInsets.only(
-                      // bottom: isLastMessageRight(widget.index) ? 20.0 : 10.0,
-                      right: 10.0),
+                      right: 10.0,left: 20.0),
                 )
               // : Container(
                   // child: Material(
@@ -109,12 +107,12 @@ class ChatMessageListItem extends StatelessWidget {
                     messageSnapshot.value['text'],
                     style: TextStyle(color: Colors.white),
                   ),
-                  padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-                  width: 200.0,
+                  // padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+                  // width: 200.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       color: Colors.blue),
-                  margin: EdgeInsets.only(left: 10.0),
+                  margin: EdgeInsets.only(left: 10.0,right: 20.0),
                 )
               // : Container(
                   // child: Material(
